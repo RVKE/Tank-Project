@@ -4,12 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - MapPoint
-  - RMapPoint
-  - LMapPoint
-  - UMapPoint
-  - DMapPoint
-  - Tile_Snow
   - ViewCube
   layers:
   - Default
