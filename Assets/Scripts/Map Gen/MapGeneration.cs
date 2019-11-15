@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class MapGeneration : MonoBehaviour {
 
+    [Range(32f, 256f)]
     public int tileSetSize;
+    [Range(1f, 4f)]
+    public int renderDist;
 
     public GameObject viewPoint;
     public GameObject mapParent;
+    public GameObject tileSetParent;
 
     Vector3 playerPos;
     Vector3 prevPlayerPos;
-
-    [Range(1f, 4f)]
-    public int renderDist;
 
     public Dictionary<TileSet, Vector3> tileSets = new Dictionary<TileSet, Vector3>();
 
@@ -24,29 +25,32 @@ public class MapGeneration : MonoBehaviour {
     void LoadTileSets()
     {
         playerPos = viewPoint.transform.position;
-        
+
         //check if new tileSet needs to be placed
 
-        if (prevPlayerPos != playerPos)
+        for (int x = -renderDist * tileSetSize; x < renderDist * tileSetSize; x += tileSetSize)
         {
-            for (int x = -renderDist * tileSetSize; x < renderDist * tileSetSize; x += tileSetSize)
+            for (int z = -renderDist * tileSetSize; z < renderDist * tileSetSize; z += tileSetSize)
             {
-                for (int z = -renderDist * tileSetSize; z < renderDist * tileSetSize; z += tileSetSize)
+                Vector3 newTileSetPos = RoundVector(new Vector3(x, 0, z) + playerPos, tileSetSize);
+                if (!tileSets.ContainsValue(newTileSetPos))
                 {
-                    Vector3 newTileSetPos = RoundVector(new Vector3(x, 0, z), tileSetSize);
-                    if (!tileSets.ContainsValue(newTileSetPos))
-                    {
-                        CreateTileSet(x, z);
-                    }
+                    CreateTileSet((int)newTileSetPos.x, (int)newTileSetPos.z);
                 }
             }
-            prevPlayerPos = playerPos;
         }
     }
 
     public void CreateTileSet(int x, int z)
     {
         //place new tileSet
+
+        GameObject tileSetGO = Instantiate(tileSetParent, new Vector3(x, 0, z), tileSetParent.transform.rotation);
+        tileSetGO.transform.parent = mapParent.transform;
+        TileSet tileSet = tileSetGO.GetComponent<TileSet>();
+
+
+        tileSets.Add(tileSet, new Vector3(x, 0, z));
     }
 
 

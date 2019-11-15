@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileSet {
+public class TileSet : MonoBehaviour {
 
+    [HideInInspector]
     public int tileSetX;
+    [HideInInspector]
     public int tileSetY;
+    [HideInInspector]
     public int size;
 
     public TileSet(int x, int y, int s)

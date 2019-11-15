@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ViewCube
+  - TileSet
   layers:
   - Default
   - TransparentFX
