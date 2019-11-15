@@ -15,7 +15,7 @@ public class MapGeneration : MonoBehaviour {
     [Range(1f, 4f)]
     public int renderDist;
 
-    public List<TileSet> tileSets;
+    public Dictionary<TileSet, Vector3> tileSets = new Dictionary<TileSet, Vector3>();
 
 	void Update () {
         LoadTileSets();
@@ -25,18 +25,28 @@ public class MapGeneration : MonoBehaviour {
     {
         playerPos = viewPoint.transform.position;
         
+        //check if new tileSet needs to be placed
+
         if (prevPlayerPos != playerPos)
         {
             for (int x = -renderDist * tileSetSize; x < renderDist * tileSetSize; x += tileSetSize)
             {
                 for (int z = -renderDist * tileSetSize; z < renderDist * tileSetSize; z += tileSetSize)
                 {
-                    Vector3 newPos = new Vector3(x, 0, z);
-                    Debug.Log(newPos);
+                    Vector3 newTileSetPos = RoundVector(new Vector3(x, 0, z), tileSetSize);
+                    if (!tileSets.ContainsValue(newTileSetPos))
+                    {
+                        CreateTileSet(x, z);
+                    }
                 }
             }
             prevPlayerPos = playerPos;
         }
+    }
+
+    public void CreateTileSet(int x, int z)
+    {
+        //place new tileSet
     }
 
 
