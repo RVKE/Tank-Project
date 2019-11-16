@@ -26,13 +26,13 @@ public class MapGeneration : MonoBehaviour {
     [Header("Perlin Generation Settings")]
     public bool perlinAlwaysRandomPos; //Default: True
     [Range(0.1f, 1.0f)]
-    public float perlinLimitMin; //Default: 0.493
+    public float perlinLimitMin; //Default: 0.5
     [Range(0.1f, 1.0f)]
-    public float perlinLimitMax; //Default: 0.69
+    public float perlinLimitMax; //Default: 0.6
     [Range(1.0f, 10.0f)]
     public float perlinDensityMultiplier; //Default: 5
     [Range(0.0f, 1.0f)]
-    public float perlinNoiseExtra; //Default: 0.3
+    public float perlinNoiseExtra; //Default: 0.15
     public float perlinOffsetX; //Default: 20000
     public float perlinOffsetZ; //Default: 40000
 
@@ -100,8 +100,8 @@ public class MapGeneration : MonoBehaviour {
             {
                 Vector3 newTilePos = new Vector3(x, 0, z) + tileSet.transform.position;
 
-                float perlinSample = Mathf.PerlinNoise((newTilePos.x/perlinDensity) + perlinOffsetX + Random.Range(0.0f, perlinNoiseExtra), 
-                    (newTilePos.z/perlinDensity) + perlinOffsetZ + Random.Range(0.0f, perlinNoiseExtra));
+                float perlinSample = Mathf.PerlinNoise((newTilePos.x/perlinDensity) + perlinOffsetX + Random.Range(-perlinNoiseExtra, perlinNoiseExtra), 
+                    (newTilePos.z/perlinDensity) + perlinOffsetZ + Random.Range(-perlinNoiseExtra, perlinNoiseExtra));
 
                 if (perlinSample < Random.Range(perlinLimitMin, perlinLimitMax))
                 {
