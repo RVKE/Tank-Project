@@ -28,9 +28,9 @@ public class MapGeneration : MonoBehaviour {
 
         //check if new tileSet needs to be placed
 
-        for (int x = -renderDist * tileSetSize; x < renderDist * tileSetSize; x += tileSetSize)
+        for (int x = (-renderDist * tileSetSize) + tileSetSize; x < renderDist * tileSetSize; x += tileSetSize)
         {
-            for (int z = -renderDist * tileSetSize; z < renderDist * tileSetSize; z += tileSetSize)
+            for (int z = (-renderDist * tileSetSize) + tileSetSize; z < renderDist * tileSetSize; z += tileSetSize)
             {
                 Vector3 newTileSetPos = RoundVector(new Vector3(x, 0, z) + playerPos, tileSetSize);
                 if (!tileSets.ContainsValue(newTileSetPos))
@@ -47,6 +47,7 @@ public class MapGeneration : MonoBehaviour {
 
         GameObject tileSetGO = Instantiate(tileSetParent, new Vector3(x, 0, z), tileSetParent.transform.rotation);
         tileSetGO.transform.parent = mapParent.transform;
+        tileSetGO.name = ("TileSet (" + tileSetGO.transform.position.x + ", " + tileSetGO.transform.position.z + ")");
         TileSet tileSet = tileSetGO.GetComponent<TileSet>();
 
 
