@@ -15,12 +15,12 @@ public enum Type
 public class Tile {
 
     public int tileX;
-    public int tileY;
+    public int tileZ;
     public Type type;
 
-	public Tile (int x, int y, Type t) {
+	public Tile (int x, int z, Type t) {
         tileX = x;
-        tileY = y;
+        tileZ = z;
         type = t;
 	}
 }

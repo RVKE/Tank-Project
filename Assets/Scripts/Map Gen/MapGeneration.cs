@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class MapGeneration : MonoBehaviour {
 
@@ -16,7 +17,33 @@ public class MapGeneration : MonoBehaviour {
     Vector3 playerPos;
     Vector3 prevPlayerPos;
 
+    public GameObject snowTile;
+    public GameObject treeTile;
+
     public Dictionary<TileSet, Vector3> tileSets = new Dictionary<TileSet, Vector3>();
+
+    //Perlin Noise
+    [Header("Perlin Generation Settings")]
+    public bool perlinAlwaysRandomPos;
+    [Range(0.1f, 1.0f)]
+    public float perlinLimitMin;
+    [Range(0.1f, 1.0f)]
+    public float perlinLimitMax;
+    [Range(1.0f, 10.0f)]
+    public float perlinDensityMultiplier;
+    [Range(0.0f, 1.0f)]
+    public float perlinNoiseExtra;
+    public float perlinOffsetX;
+    public float perlinOffsetZ;
+
+    void Start()
+    {
+        if (perlinAlwaysRandomPos)
+        {
+            perlinOffsetX = Random.Range(perlinOffsetX - perlinOffsetX / 4, perlinOffsetX + perlinOffsetX / 4);
+            perlinOffsetZ = Random.Range(perlinOffsetZ - perlinOffsetZ / 4, perlinOffsetZ + perlinOffsetZ / 4);
+        }
+    }
 
 	void Update () {
         LoadTileSets();
@@ -52,6 +79,11 @@ public class MapGeneration : MonoBehaviour {
 
         AddTiles(tileSet);
 
+        tileSet.size = tileSetSize;
+        tileSet.tileSetX = x;
+        tileSet.tileSetZ = z;
+        tileSet.tiles = new List<Tile>();
+
         tileSets.Add(tileSet, new Vector3(x, 0, z));
     }
 
@@ -60,28 +92,30 @@ public class MapGeneration : MonoBehaviour {
         int min = -tileSetSize / 2;
         int max = tileSetSize / 2;
 
-        //method one
+        float perlinDensity = tileSetSize / perlinDensityMultiplier;
+
         for (int x = min; x < max; x++)
         {
             for (int z = min; z < max; z++)
             {
-                Tile tile = null;
-
                 Vector3 newTilePos = new Vector3(x, 0, z) + tileSet.transform.position;
 
-                /*GameObject tileGO = Instantiate(new GameObject("Tile (" + x + ", " + z + ")"), newTilePos, transform.rotation);
-                tileGO.transform.parent = tileSet.transform;*/
+                float perlinSample = Mathf.PerlinNoise((newTilePos.x/perlinDensity) + perlinOffsetX + Random.Range(0.0f, perlinNoiseExtra), 
+                    (newTilePos.z/perlinDensity) + perlinOffsetZ + Random.Range(0.0f, perlinNoiseExtra));
+
+                if (perlinSample < Random.Range(perlinLimitMin, perlinLimitMax))
+                {
+                    //spawn snow
+                    GameObject tempSnow = Instantiate(snowTile, newTilePos, Quaternion.identity);
+                    tempSnow.transform.parent = tileSet.transform;
+                } else
+                {
+                    //spawn tree
+                    GameObject tempTree = Instantiate(treeTile, newTilePos, Quaternion.identity);
+                    tempTree.transform.parent = tileSet.transform;
+                }
             }
         }
-
-
-        //method two
-
-        /*for (int i = 0; i < Mathf.Pow(tileSetSize, 2f); i++)
-        {
-            Debug.Log(Mathf.Pow(tileSetSize, 2f));
-        }*/
-
     }
 
 

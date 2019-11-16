@@ -6,6 +6,7 @@ public class ViewMovement : MonoBehaviour
 
     void Update()
     {
+        //transform.Translate(Vector3.forward * speed);
         float translation = (Input.GetAxis("Vertical")) * speed * Time.deltaTime;
         float straffe = (Input.GetAxis("Horizontal")) * speed * Time.deltaTime;
 
