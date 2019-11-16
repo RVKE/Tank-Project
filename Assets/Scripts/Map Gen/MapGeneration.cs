@@ -50,8 +50,38 @@ public class MapGeneration : MonoBehaviour {
         tileSetGO.name = ("TileSet (" + tileSetGO.transform.position.x + ", " + tileSetGO.transform.position.z + ")");
         TileSet tileSet = tileSetGO.GetComponent<TileSet>();
 
+        AddTiles(tileSet);
 
         tileSets.Add(tileSet, new Vector3(x, 0, z));
+    }
+
+    private void AddTiles(TileSet tileSet)
+    {
+        int min = -tileSetSize / 2;
+        int max = tileSetSize / 2;
+
+        //method one
+        for (int x = min; x < max; x++)
+        {
+            for (int z = min; z < max; z++)
+            {
+                Tile tile = null;
+
+                Vector3 newTilePos = new Vector3(x, 0, z) + tileSet.transform.position;
+
+                /*GameObject tileGO = Instantiate(new GameObject("Tile (" + x + ", " + z + ")"), newTilePos, transform.rotation);
+                tileGO.transform.parent = tileSet.transform;*/
+            }
+        }
+
+
+        //method two
+
+        /*for (int i = 0; i < Mathf.Pow(tileSetSize, 2f); i++)
+        {
+            Debug.Log(Mathf.Pow(tileSetSize, 2f));
+        }*/
+
     }
 
 
