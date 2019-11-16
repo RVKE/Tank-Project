@@ -24,17 +24,17 @@ public class MapGeneration : MonoBehaviour {
 
     //Perlin Noise
     [Header("Perlin Generation Settings")]
-    public bool perlinAlwaysRandomPos;
+    public bool perlinAlwaysRandomPos; //Default: True
     [Range(0.1f, 1.0f)]
-    public float perlinLimitMin;
+    public float perlinLimitMin; //Default: 0.493
     [Range(0.1f, 1.0f)]
-    public float perlinLimitMax;
+    public float perlinLimitMax; //Default: 0.69
     [Range(1.0f, 10.0f)]
-    public float perlinDensityMultiplier;
+    public float perlinDensityMultiplier; //Default: 5
     [Range(0.0f, 1.0f)]
-    public float perlinNoiseExtra;
-    public float perlinOffsetX;
-    public float perlinOffsetZ;
+    public float perlinNoiseExtra; //Default: 0.3
+    public float perlinOffsetX; //Default: 20000
+    public float perlinOffsetZ; //Default: 40000
 
     void Start()
     {

@@ -529,6 +529,7 @@ MonoBehaviour:
     type: 2}
   snowTile: {fileID: 1111583801076456, guid: 0989d09108406e84e88adde01c264a7f, type: 2}
   treeTile: {fileID: 1183236846966090, guid: 7af754d01e5c7474db8f05219cce3c20, type: 2}
+  perlinAlwaysRandomPos: 1
   perlinLimitMin: 0.493
   perlinLimitMax: 0.69
   perlinDensityMultiplier: 5
