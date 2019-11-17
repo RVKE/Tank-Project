@@ -98,23 +98,46 @@ public class MapGeneration : MonoBehaviour {
         {
             for (int z = min; z < max; z++)
             {
+                Tile tile = null;
+
                 Vector3 newTilePos = new Vector3(x, 0, z) + tileSet.transform.position;
 
-                float perlinSample = Mathf.PerlinNoise((newTilePos.x/perlinDensity) + perlinOffsetX + Random.Range(-perlinNoiseExtra, perlinNoiseExtra), 
+                float perlinSample = Mathf.PerlinNoise(
+                    (newTilePos.x/perlinDensity) + perlinOffsetX + Random.Range(-perlinNoiseExtra, perlinNoiseExtra), 
                     (newTilePos.z/perlinDensity) + perlinOffsetZ + Random.Range(-perlinNoiseExtra, perlinNoiseExtra));
 
                 if (perlinSample < Random.Range(perlinLimitMin, perlinLimitMax))
                 {
                     //spawn snow
-                    GameObject tempSnow = Instantiate(snowTile, newTilePos, Quaternion.identity);
-                    tempSnow.transform.parent = tileSet.transform;
+                    tile = new Tile((int)newTilePos.x, (int)newTilePos.z, (Type)0);
                 } else
                 {
                     //spawn tree
-                    GameObject tempTree = Instantiate(treeTile, newTilePos, Quaternion.identity);
-                    tempTree.transform.parent = tileSet.transform;
+                    tile = new Tile((int)newTilePos.x, (int)newTilePos.z, (Type)1);
                 }
+
+                if (tile != null)
+                    FillTile(tileSet, tile, newTilePos);
             }
+        }
+    }
+
+    private void FillTile(TileSet tileSet, Tile tile, Vector3 tilePos)
+    {
+        if (tile.type == Type.Snow)
+        {
+            GameObject tempSnow = Instantiate(snowTile, tilePos, Quaternion.identity);
+            tempSnow.transform.parent = tileSet.transform;
+        }
+        else if (tile.type == Type.Tree)
+        {
+            GameObject tempTree = Instantiate(treeTile, tilePos, Quaternion.identity);
+            tempTree.transform.parent = tileSet.transform;
+        }
+        else if (tile.type == Type.Rock)
+        {
+            GameObject tempRock = Instantiate(treeTile, tilePos, Quaternion.identity);
+            tempRock.transform.parent = tileSet.transform;
         }
     }
 
