@@ -18,12 +18,13 @@ public class MapGeneration : MonoBehaviour {
 
     public Dictionary<TileSet, Vector3> tileSets = new Dictionary<TileSet, Vector3>();
 
-    //Perlin Noise
+    //Map Settings
     [Header("Map Generation Settings")]
     [Range(32f, 256f)]
     public int tileSetSize;
     [Range(1f, 4f)]
     public int renderDist;
+    //Perlin Noise
     public bool perlinAlwaysRandomPos; //Default: True
     [Range(0.1f, 1.0f)]
     public float perlinLimitMin; //Default: 0.5
@@ -108,11 +109,9 @@ public class MapGeneration : MonoBehaviour {
 
                 if (perlinSample < Random.Range(perlinLimitMin, perlinLimitMax))
                 {
-                    //spawn snow
-                    tile = new Tile((int)newTilePos.x, (int)newTilePos.z, (Type)0);
+                    tile = new Tile((int)newTilePos.x, (int)newTilePos.z, 0);
                 } else
                 {
-                    //spawn tree
                     tile = new Tile((int)newTilePos.x, (int)newTilePos.z, (Type)1);
                 }
 
@@ -128,16 +127,19 @@ public class MapGeneration : MonoBehaviour {
         {
             GameObject tileObject = Instantiate(RandomGameObject(snowTile), tilePos, tileSet.transform.rotation);
             tileObject.transform.parent = tileSet.transform;
+            tileObject.name = (tile.type + " (" + tileObject.transform.position.x + ", " + tileObject.transform.position.z + ")");
         }
         else if (tile.type == Type.Tree)
         {
             GameObject tileObject = Instantiate(RandomGameObject(treeTile), tilePos, tileSet.transform.rotation);
             tileObject.transform.parent = tileSet.transform;
+            tileObject.name = (tile.type + " (" + tileObject.transform.position.x + ", " + tileObject.transform.position.z + ")");
         }
         else if (tile.type == Type.Rock)
         {
             GameObject tileObject = Instantiate(RandomGameObject(rockTile), tilePos, tileSet.transform.rotation);
             tileObject.transform.parent = tileSet.transform;
+            tileObject.name = (tile.type + " (" + tileObject.transform.position.x + ", " + tileObject.transform.position.z + ")");
         }
     }
 
