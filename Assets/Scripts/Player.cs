@@ -1,32 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public enum PlayerState
-{
-    Commanding,
-    Driving,
-}
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public PlayerState currentState;
+    private PlayerState currentState;
 
     public float speed;
     public float rotateSpeed;
 
-	void Start () {
-        currentState = PlayerState.Driving;
+    void Start()
+    {
+        GameManager.instance.UpdatePlayerState();
+        currentState = GameManager.instance.currentState;
     }
-	
-	void Update () {
 
+	void Update () {
         if (currentState == PlayerState.Driving) {
             PlayerMovement();
         } 
 
         if (Input.GetKeyDown(KeyCode.Tab)) {
-            UpdatePlayerState();
+            GameManager.instance.UpdatePlayerState();
+            currentState = GameManager.instance.currentState;
         }
 	}
 
@@ -38,24 +32,5 @@ public class Player : MonoBehaviour {
         transform.Translate(0, 0, transAmount);
         transform.Rotate(0, rotateAmount, 0);
 
-    }
-
-
-    void UpdatePlayerState()
-    {
-        if (currentState == PlayerState.Commanding)
-            currentState = PlayerState.Driving;
-        else
-            currentState = PlayerState.Commanding;
-
-        switch (currentState)
-        {
-            case PlayerState.Commanding:
-                Debug.Log(currentState);
-                break;
-            case PlayerState.Driving:
-                Debug.Log(currentState);
-                break;
-        }
     }
 }
