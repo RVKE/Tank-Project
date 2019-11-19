@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum PlayerState
 {
@@ -23,14 +24,18 @@ public class GameManager : MonoBehaviour {
         }
         DontDestroyOnLoad(gameObject);
 
-    }
-
-    void Start()
-    {
         currentState = PlayerState.Driving;
     }
 
-    public void UpdatePlayerState()
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            UpdatePlayerState();
+        }
+    }
+
+    void UpdatePlayerState()
     {
         if (currentState == PlayerState.Commanding)
             currentState = PlayerState.Driving;

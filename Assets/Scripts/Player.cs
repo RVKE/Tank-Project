@@ -7,21 +7,12 @@ public class Player : MonoBehaviour {
     public float speed;
     public float rotateSpeed;
 
-    void Start()
-    {
-        GameManager.instance.UpdatePlayerState();
-        currentState = GameManager.instance.currentState;
-    }
-
 	void Update () {
+        currentState = GameManager.instance.currentState;
+
         if (currentState == PlayerState.Driving) {
             PlayerMovement();
         } 
-
-        if (Input.GetKeyDown(KeyCode.Tab)) {
-            GameManager.instance.UpdatePlayerState();
-            currentState = GameManager.instance.currentState;
-        }
 	}
 
     void PlayerMovement()
