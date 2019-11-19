@@ -4,8 +4,8 @@ using UnityEngine;
 
 public enum PlayerState
 {
-    Inside,
-    Outside,
+    Commanding,
+    Driving,
 }
 
 public class Player : MonoBehaviour {
@@ -16,12 +16,12 @@ public class Player : MonoBehaviour {
     public float rotateSpeed;
 
 	void Start () {
-        currentState = PlayerState.Outside;
+        currentState = PlayerState.Driving;
     }
 	
 	void Update () {
 
-        if (currentState == PlayerState.Outside) {
+        if (currentState == PlayerState.Driving) {
             PlayerMovement();
         } 
 
@@ -43,18 +43,18 @@ public class Player : MonoBehaviour {
 
     void UpdatePlayerState()
     {
-        if (currentState == PlayerState.Inside)
-            currentState = PlayerState.Outside;
+        if (currentState == PlayerState.Commanding)
+            currentState = PlayerState.Driving;
         else
-            currentState = PlayerState.Inside;
+            currentState = PlayerState.Commanding;
 
         switch (currentState)
         {
-            case PlayerState.Inside:
-                Debug.Log("inside mode");
+            case PlayerState.Commanding:
+                Debug.Log(currentState);
                 break;
-            case PlayerState.Outside:
-                Debug.Log("outside mode");
+            case PlayerState.Driving:
+                Debug.Log(currentState);
                 break;
         }
     }

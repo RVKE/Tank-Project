@@ -90,6 +90,8 @@ public class MapGeneration : MonoBehaviour {
 
     private void AddTiles(TileSet tileSet)
     {
+        //fill tileSet with individual tiles
+
         int min = -tileSetSize / 2;
         int max = tileSetSize / 2;
 
@@ -123,34 +125,43 @@ public class MapGeneration : MonoBehaviour {
 
     private void FillTile(TileSet tileSet, Tile tile, Vector3 tilePos)
     {
+        //check what type the tile is
+
         if (tile.type == Type.Snow)
         {
-            GameObject tileObject = Instantiate(RandomGameObject(snowTile), tilePos, tileSet.transform.rotation);
-            tileObject.transform.parent = tileSet.transform;
-            tileObject.name = (tile.type + " (" + tileObject.transform.position.x + ", " + tileObject.transform.position.z + ")");
+            InstantiateTile(snowTile, tileSet, tile, tilePos);
         }
         else if (tile.type == Type.Tree)
         {
-            GameObject tileObject = Instantiate(RandomGameObject(treeTile), tilePos, tileSet.transform.rotation);
-            tileObject.transform.parent = tileSet.transform;
-            tileObject.name = (tile.type + " (" + tileObject.transform.position.x + ", " + tileObject.transform.position.z + ")");
+            InstantiateTile(treeTile, tileSet, tile, tilePos);
         }
         else if (tile.type == Type.Rock)
         {
-            GameObject tileObject = Instantiate(RandomGameObject(rockTile), tilePos, tileSet.transform.rotation);
-            tileObject.transform.parent = tileSet.transform;
-            tileObject.name = (tile.type + " (" + tileObject.transform.position.x + ", " + tileObject.transform.position.z + ")");
+            InstantiateTile(rockTile, tileSet, tile, tilePos);
         }
+    }
+
+    private void InstantiateTile(GameObject[] tileArray, TileSet tileSet, Tile tile, Vector3 tilePos)
+    {
+        //instantiate the tile
+
+        GameObject tileObject = Instantiate(RandomGameObject(tileArray), tilePos, tileSet.transform.rotation);
+        tileObject.transform.parent = tileSet.transform;
+        tileObject.name = (tile.type + " (" + tileObject.transform.position.x + ", " + tileObject.transform.position.z + ")");
     }
 
     public static GameObject RandomGameObject(GameObject[] array)
     {
+        //choose random gameObject from list
+
         GameObject randomObject = array[Random.Range(0, array.Length)];
         return randomObject;
     }
 
     public static Vector3 RoundVector(Vector3 vector, float roundSize)
     {
+        //round a position to desired roundSize
+
         return new Vector3(
             Mathf.Round(vector.x / roundSize) * roundSize,
             Mathf.Round(vector.y / roundSize) * roundSize,
