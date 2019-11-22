@@ -304,7 +304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e92e2a9d167224dbd409ade11255f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 1
   speed: 2
   rotateSpeed: 50
 --- !u!1 &491402430
@@ -418,6 +417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648561f2e64eea24bbf527af4d21b091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableDebugMode: 1
+  debugSpeed: 20
 --- !u!4 &1174895980
 Transform:
   m_ObjectHideFlags: 0
@@ -679,9 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95341a7fa8c0d1647a2fae5bbc57f1bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dirLight: {fileID: 19062610}
-  days: 0
-  hours: 0
+  currentState: 0
 --- !u!4 &1877161263
 Transform:
   m_ObjectHideFlags: 0
