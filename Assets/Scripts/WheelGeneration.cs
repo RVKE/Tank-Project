@@ -53,14 +53,16 @@ public class WheelGeneration : MonoBehaviour {
         for (int i = -1; i < 3; i += 2)
         {
             float upperWheelRangeZ = ((wheelAmount - 4) / 4 * wheelLowerSpacingZ) + wheelUpperSpacingZ;
-            float wheelPosX = wheelOffsetX * i;
-            Vector3 sprocketWheelPos = new Vector3(wheelPosX, wheelUpperPosY + transform.position.y, upperWheelRangeZ);
-            Vector3 rearWheelPos = new Vector3(wheelPosX, wheelUpperPosY + transform.position.y, -upperWheelRangeZ);
-            GameObject wheelObject = Instantiate(wheelPrefab, sprocketWheelPos, transform.rotation);
-            if (wheelPosX > 0)
-                wheelObject.transform.Rotate(0, 180, 0);
-            wheelObject.transform.parent = GameObject.Find("Wheels").transform;
-            wheelObject.name = ("Upperwheel " + sprocketWheelPos);
+            for (float z = -upperWheelRangeZ; z <= upperWheelRangeZ; z += upperWheelRangeZ * 2)
+            {
+                float wheelPosX = wheelOffsetX * i;
+                Vector3 upperWheelPos = new Vector3(wheelPosX, wheelUpperPosY + transform.position.y, z);
+                GameObject wheelObject = Instantiate(wheelPrefab, upperWheelPos, transform.rotation);
+                if (wheelPosX > 0)
+                    wheelObject.transform.Rotate(0, 180, 0);
+                wheelObject.transform.parent = GameObject.Find("Wheels").transform;
+                wheelObject.name = ("Upperwheel " + upperWheelPos);
+            }
         }
     }
 }
