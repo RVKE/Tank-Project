@@ -4,20 +4,43 @@ public class Player : MonoBehaviour {
 
     private PlayerState currentState;
 
-    public float topSpeed;
+    [Header("Movement Settings")]
+    public float maxSpeed;
     public float acceleration;
-    public float rotateSpeed;
+    public float deceleration;
 
-	void Update () {
+    public float maxRotationSpeed;
+
+    void Update () {
         currentState = GameManager.instance.currentState;
 
         if (currentState == PlayerState.DRIVING) {
-            PlayerMovement();
+            SpeedControls();
         } 
 	}
 
-    void PlayerMovement()
+    void SpeedControls()
     {
-        //player movement
+        //forward and backward
+
+        float speed = GetComponent<SpeedManager>().currentSpeed;
+        float forwardInput = Input.GetAxis("Vertical");
+        if (forwardInput == 0)
+        {
+            speed = Mathf.MoveTowards(speed, 0, deceleration * Time.deltaTime);
+        }
+        else if (speed < maxSpeed && speed > -maxSpeed/3)
+        {
+            //speed += forwardInput * acceleration * Time.deltaTime;
+            speed = Mathf.MoveTowards(0, maxSpeed, acceleration * forwardInput * 100.0f * Time.deltaTime);
+        }
+        GetComponent<SpeedManager>().currentSpeed = speed;
+
+        //rotation
+
+        float rotationSpeed = GetComponent<SpeedManager>().currentRotationSpeed;
+        float rotationInput = Input.GetAxis("Horizontal");
+        rotationSpeed = rotationInput * maxRotationSpeed * 10.0f * Time.deltaTime;
+        GetComponent<SpeedManager>().currentRotationSpeed = rotationSpeed;
     }
 }
