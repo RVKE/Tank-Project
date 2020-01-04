@@ -1,11 +1,5 @@
 ﻿using UnityEngine;
 
-public enum DrivingState
-{
-    IDLE,
-    MOVING,
-}
-
 public class SpeedManager : MonoBehaviour {
 
     public DrivingState currentState;

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WheelRotation : MonoBehaviour {
 
@@ -18,7 +16,6 @@ public class WheelRotation : MonoBehaviour {
         {
             if (rotationSpeed > 0)
             {
-                Debug.Log("dip");
                 if (gameObject.transform.tag == "LeftWheel")
                     RotateWheel(-20.0f);
                 else
