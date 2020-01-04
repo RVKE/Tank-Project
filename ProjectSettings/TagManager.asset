@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ViewCube
   - TileSet
+  - RightWheel
+  - LeftWheel
   layers:
   - Default
   - TransparentFX

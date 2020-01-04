@@ -29,10 +29,9 @@ public class Player : MonoBehaviour {
         {
             speed = Mathf.MoveTowards(speed, 0, deceleration * Time.deltaTime);
         }
-        else if (speed < maxSpeed && speed > -maxSpeed/3)
+        else if (speed < maxSpeed && speed > -maxSpeed/2)
         {
-            //speed += forwardInput * acceleration * Time.deltaTime;
-            speed = Mathf.MoveTowards(0, maxSpeed, acceleration * forwardInput * 100.0f * Time.deltaTime);
+            speed += forwardInput * acceleration * Time.deltaTime;
         }
         GetComponent<SpeedManager>().currentSpeed = speed;
 

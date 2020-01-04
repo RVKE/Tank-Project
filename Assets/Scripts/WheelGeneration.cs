@@ -41,7 +41,14 @@ public class WheelGeneration : MonoBehaviour {
                 Vector3 wheelPos = new Vector3(wheelPosX, wheelLowerPosY + transform.position.y, z);
                 GameObject wheelObject = Instantiate(wheelPrefab, wheelPos, transform.rotation);
                 if (wheelPosX > 0)
+                {
                     wheelObject.transform.Rotate(0, 180, 0);
+                    wheelObject.tag = "RightWheel";
+                }
+                else
+                {
+                    wheelObject.tag = "LeftWheel";
+                }
                 wheelObject.transform.parent = GameObject.Find("Wheels").transform;
                 wheelObject.name = ("Lowerwheel " + wheelPos);
             }
@@ -59,7 +66,14 @@ public class WheelGeneration : MonoBehaviour {
                 Vector3 upperWheelPos = new Vector3(wheelPosX, wheelUpperPosY + transform.position.y, z);
                 GameObject wheelObject = Instantiate(wheelPrefab, upperWheelPos, transform.rotation);
                 if (wheelPosX > 0)
+                {
                     wheelObject.transform.Rotate(0, 180, 0);
+                    wheelObject.tag = "RightWheel";
+                }
+                else
+                {
+                    wheelObject.tag = "LeftWheel";
+                }
                 wheelObject.transform.parent = GameObject.Find("Wheels").transform;
                 wheelObject.name = ("Upperwheel " + upperWheelPos);
             }

@@ -1,8 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+public enum DrivingState
+{
+    IDLE,
+    MOVING,
+}
 
 public class SpeedManager : MonoBehaviour {
+
+    public DrivingState currentState;
 
     public float currentSpeed;
     public float currentRotationSpeed;
@@ -12,5 +18,10 @@ public class SpeedManager : MonoBehaviour {
     {
         transform.position += transform.forward * Time.deltaTime * currentSpeed / speedConversion;
         transform.RotateAround(transform.position, transform.up, Time.deltaTime * currentRotationSpeed);
+
+        if (currentSpeed != 0 || currentRotationSpeed != 0)
+            currentState = DrivingState.MOVING;
+        else
+            currentState = DrivingState.IDLE;
     }
 }
