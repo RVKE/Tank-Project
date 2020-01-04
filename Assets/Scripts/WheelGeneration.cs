@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankWheels : MonoBehaviour {
+public class WheelGeneration : MonoBehaviour {
 
     [Header("Wheel Prefabs")]
     public GameObject wheelPrefab;
-    public GameObject sprocketPrefab;
-    public GameObject rearWheelPrefab;
 
     [Header("Wheel Generation Settings")]
     public int wheelAmount;
@@ -26,6 +24,10 @@ public class TankWheels : MonoBehaviour {
     void Start () {
         GenerateLowerWheels();
         GenerateUpperWheels();
+        foreach(Transform wheel in GameObject.Find("Wheels").transform)
+        {
+            wheel.gameObject.AddComponent<WheelRotation>();
+        }
     }
 
     void GenerateLowerWheels()
@@ -54,15 +56,11 @@ public class TankWheels : MonoBehaviour {
             float wheelPosX = wheelOffsetX * i;
             Vector3 sprocketWheelPos = new Vector3(wheelPosX, wheelUpperPosY + transform.position.y, upperWheelRangeZ);
             Vector3 rearWheelPos = new Vector3(wheelPosX, wheelUpperPosY + transform.position.y, -upperWheelRangeZ);
-            GameObject sprocketWheelObject = Instantiate(wheelPrefab, sprocketWheelPos, transform.rotation);
-            GameObject rearWheelObject = Instantiate(rearWheelPrefab, rearWheelPos, transform.rotation);
+            GameObject wheelObject = Instantiate(wheelPrefab, sprocketWheelPos, transform.rotation);
             if (wheelPosX > 0)
-                sprocketWheelObject.transform.Rotate(0, 180, 0);
-                rearWheelObject.transform.Rotate(0, 180, 0);
-            sprocketWheelObject.transform.parent = GameObject.Find("Wheels").transform;
-            sprocketWheelObject.name = ("SprocketWheel " + sprocketWheelPos);
-            rearWheelObject.transform.parent = GameObject.Find("Wheels").transform;
-            rearWheelObject.name = ("RearWheel " + sprocketWheelPos);
+                wheelObject.transform.Rotate(0, 180, 0);
+            wheelObject.transform.parent = GameObject.Find("Wheels").transform;
+            wheelObject.name = ("Upperwheel " + sprocketWheelPos);
         }
     }
 }

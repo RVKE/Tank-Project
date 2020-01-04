@@ -4,7 +4,8 @@ public class Player : MonoBehaviour {
 
     private PlayerState currentState;
 
-    public float speed;
+    public float topSpeed;
+    public float acceleration;
     public float rotateSpeed;
 
 	void Update () {
@@ -17,11 +18,6 @@ public class Player : MonoBehaviour {
 
     void PlayerMovement()
     {
-        var transAmount = speed * Time.deltaTime * Input.GetAxis("Vertical");
-        var rotateAmount = rotateSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
-
-        transform.Translate(0, 0, transAmount);
-        transform.Rotate(0, rotateAmount, 0);
-
+        //player movement
     }
 }

@@ -272,6 +272,8 @@ GameObject:
   m_Component:
   - component: {fileID: 100275419}
   - component: {fileID: 100275420}
+  - component: {fileID: 100275421}
+  - component: {fileID: 100275422}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -286,7 +288,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 100275418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.658, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 527072316}
@@ -305,8 +307,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e92e2a9d167224dbd409ade11255f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  topSpeed: 0
+  acceleration: 0
   rotateSpeed: 50
+--- !u!114 &100275421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100275418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb79e7d390cf1a146879a9aa141d6136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSpeed: 20
+--- !u!114 &100275422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100275418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb32f2519207dc64ba46e19a026fe4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelPrefab: {fileID: 1308062665842076, guid: 6b621faf2e450964d88ca3c457142952,
+    type: 2}
+  sprocketPrefab: {fileID: 1341350536868498, guid: af371784f43288347988abd8d7788376,
+    type: 2}
+  rearWheelPrefab: {fileID: 1855038079767802, guid: 33b513faf77244a4988d698699eca79f,
+    type: 2}
+  wheelAmount: 14
+  wheelLowerSpacingZ: 0.1717
+  wheelUpperSpacingZ: 0.1717
+  wheelUpperPosY: -0.0333
+  wheelLowerPosY: -0.0967
+  wheelOffsetX: 0.35
 --- !u!1 &209955904
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +839,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1367671041}
-  - component: {fileID: 1367671042}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -816,7 +853,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1367671040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.658, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 697265117}
@@ -826,29 +863,6 @@ Transform:
   m_Father: {fileID: 100275419}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1367671042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1367671040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb32f2519207dc64ba46e19a026fe4b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wheelPrefab: {fileID: 1308062665842076, guid: 6b621faf2e450964d88ca3c457142952,
-    type: 2}
-  sprocketPrefab: {fileID: 1341350536868498, guid: af371784f43288347988abd8d7788376,
-    type: 2}
-  rearWheelPrefab: {fileID: 1855038079767802, guid: 33b513faf77244a4988d698699eca79f,
-    type: 2}
-  wheelAmount: 14
-  wheelLowerSpacingZ: 0.1717
-  wheelUpperSpacingZ: 0.1717
-  wheelUpperPosY: -0.0333
-  wheelLowerPosY: -0.0967
-  wheelOffsetX: 0.35
 --- !u!1 &1555666179
 GameObject:
   m_ObjectHideFlags: 0

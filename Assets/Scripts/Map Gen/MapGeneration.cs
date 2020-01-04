@@ -95,26 +95,18 @@ public class MapGeneration : MonoBehaviour {
 
         float perlinDensity = tileSetSize / perlinDensityMultiplier;
 
-        //float superRandomFloat = new float();
-
         for (int x = min; x < max; x++)
         {
             for (int z = min; z < max; z++)
             {
                 Tile tile = null;
 
-                //superRandomFloat += 0.0005f;
 
                 Vector3 newTilePos = new Vector3(x, 0, z) + tileSet.transform.position;
 
                 float perlinSample = Mathf.PerlinNoise(
                     (newTilePos.x/perlinDensity) + perlinOffsetX + Random.Range(-perlinNoiseExtra, perlinNoiseExtra), 
                     (newTilePos.z/perlinDensity) + perlinOffsetZ + Random.Range(-perlinNoiseExtra, perlinNoiseExtra));
-
-                /*float perlinSample = Mathf.PerlinNoise(
-                    (newTilePos.x / perlinDensity) / Mathf.Sin(-superRandomFloat) + perlinOffsetX + Random.Range(-perlinNoiseExtra, perlinNoiseExtra),
-                    (newTilePos.z / perlinDensity) / Mathf.Sin(-superRandomFloat) + perlinOffsetZ + Random.Range(-perlinNoiseExtra, perlinNoiseExtra));*/
-
 
                 if (perlinSample < Random.Range(perlinLimitMin, perlinLimitMax))
                 {
