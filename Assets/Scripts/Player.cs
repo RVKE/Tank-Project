@@ -19,9 +19,12 @@ public class Player : MonoBehaviour {
 
     public GameObject turret;
     public GameObject cannon;
+    public GameObject projectileEmitter;
+    public GameObject projectile;
 
     private Camera cam;
 
+    public float projectileSpeed;
     public float reloadCooldown;
     private bool fireReady = true;
 
@@ -92,7 +95,9 @@ public class Player : MonoBehaviour {
     {
         if (fireReady == true)
         {
-            Debug.Log("BAM");
+            //Fire
+            GameObject projectileObject = Instantiate(projectile, projectileEmitter.transform.position, projectileEmitter.transform.rotation);
+            Destroy(projectileObject, 25.0f);
             StartCoroutine(Reloading());
         }
     }

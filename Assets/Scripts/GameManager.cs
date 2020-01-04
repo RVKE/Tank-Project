@@ -11,11 +11,16 @@ public class GameManager : MonoBehaviour {
 
 
     public PlayerState currentState;
-
     public static GameManager instance;
 
-    //private GameObject drivingCam;
-    //private GameObject commandingCam;
+    [Header("Resources")]
+    public int hitPointsAmount;
+    public int energyAmount;
+    public int dieselAmount;
+    public int coalAmount;
+    public int scrapMetalAmount;
+    public int woodAmount;
+    public int projectileAmount;
 
     void Awake ()
     {
@@ -28,12 +33,6 @@ public class GameManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
 
         currentState = PlayerState.DRIVING;
-    }
-
-    void Start()
-    {
-        //drivingCam = Camera.main.gameObject;
-        //commandingCam = GameObject.FindGameObjectWithTag("Commanding Camera");
     }
 
     void Update()
@@ -55,13 +54,9 @@ public class GameManager : MonoBehaviour {
         {
             case PlayerState.COMMANDING:
                 Debug.Log(currentState);
-                //commandingCam.SetActive(!commandingCam.activeInHierarchy);
-                //drivingCam.SetActive(!commandingCam.activeInHierarchy);
                 break;
             case PlayerState.DRIVING:
                 Debug.Log(currentState);
-                //commandingCam.SetActive(!commandingCam.activeInHierarchy);
-                //drivingCam.SetActive(!commandingCam.activeInHierarchy);
                 break;
         }
     }

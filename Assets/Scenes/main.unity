@@ -226,6 +226,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turret: {fileID: 802476310}
   cannon: {fileID: 853461763}
+  projectileEmitter: {fileID: 942759706}
+  projectile: {fileID: 1837375162263264, guid: e5e581538b07f8b42abebeb270e59939, type: 2}
+  projectileSpeed: 10
   reloadCooldown: 2
   maxSpeed: 40
   acceleration: 20
@@ -696,7 +699,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 942759707}
   m_Father: {fileID: 209955905}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -745,6 +749,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 853461763}
   m_Mesh: {fileID: 4300000, guid: a1bf96a088a51ba478e7a3d13bbbeefe, type: 3}
+--- !u!1 &942759706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 942759707}
+  m_Layer: 0
+  m_Name: Emitter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &942759707
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 942759706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1747, z: 0.2393}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 853461764}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1174895978
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,6 +1012,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  hitPointsAmount: 0
+  energyAmount: 0
+  dieselAmount: 0
+  coalAmount: 0
+  scrapMetalAmount: 0
+  woodAmount: 0
+  projectileAmount: 0
 --- !u!4 &1877161263
 Transform:
   m_ObjectHideFlags: 0
@@ -1068,7 +1107,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1930464156}
   m_LocalRotation: {x: 0.5686694, y: -0.10692085, z: 0.07486677, w: 0.81214416}
-  m_LocalPosition: {x: 0.58, y: 6.98, z: -2.11}
+  m_LocalPosition: {x: 0.31, y: 3.78, z: -1.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1174895980}
