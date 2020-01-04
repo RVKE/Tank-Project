@@ -3,8 +3,8 @@ using UnityEngine.SceneManagement;
 
 public enum PlayerState
 {
-    Commanding,
-    Driving,
+    COMMANDING,
+    DRIVING,
 }
 
 public class GameManager : MonoBehaviour {
@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour {
     public PlayerState currentState;
 
     public static GameManager instance;
+
+    //private GameObject drivingCam;
+    //private GameObject commandingCam;
 
     void Awake ()
     {
@@ -24,7 +27,13 @@ public class GameManager : MonoBehaviour {
         }
         DontDestroyOnLoad(gameObject);
 
-        currentState = PlayerState.Driving;
+        currentState = PlayerState.DRIVING;
+    }
+
+    void Start()
+    {
+        //drivingCam = Camera.main.gameObject;
+        //commandingCam = GameObject.FindGameObjectWithTag("Commanding Camera");
     }
 
     void Update()
@@ -37,18 +46,22 @@ public class GameManager : MonoBehaviour {
 
     void UpdatePlayerState()
     {
-        if (currentState == PlayerState.Commanding)
-            currentState = PlayerState.Driving;
+        if (currentState == PlayerState.COMMANDING)
+            currentState = PlayerState.DRIVING;
         else
-            currentState = PlayerState.Commanding;
+            currentState = PlayerState.COMMANDING;
 
         switch (currentState)
         {
-            case PlayerState.Commanding:
+            case PlayerState.COMMANDING:
                 Debug.Log(currentState);
+                //commandingCam.SetActive(!commandingCam.activeInHierarchy);
+                //drivingCam.SetActive(!commandingCam.activeInHierarchy);
                 break;
-            case PlayerState.Driving:
+            case PlayerState.DRIVING:
                 Debug.Log(currentState);
+                //commandingCam.SetActive(!commandingCam.activeInHierarchy);
+                //drivingCam.SetActive(!commandingCam.activeInHierarchy);
                 break;
         }
     }

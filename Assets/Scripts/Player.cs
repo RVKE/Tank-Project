@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 	void Update () {
         currentState = GameManager.instance.currentState;
 
-        if (currentState == PlayerState.Driving) {
+        if (currentState == PlayerState.DRIVING) {
             PlayerMovement();
         } 
 	}
