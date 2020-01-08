@@ -38,6 +38,6 @@ public class WheelRotation : MonoBehaviour {
 
     void RotateWheel(float wheelSpeed)
     {
-        gameObject.transform.Rotate(Vector3.left * (wheelSpeed * 20.0f * Time.deltaTime));
+        gameObject.transform.Rotate(Vector3.left * (wheelSpeed * 15.0f * Time.deltaTime));
     }
 }

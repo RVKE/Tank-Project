@@ -40,7 +40,7 @@ public class Player : MonoBehaviour {
         cam = Camera.main;
     }
 
-    void Update () {
+    void FixedUpdate () {
         currentState = GameManager.instance.currentState;
 
         if (currentState == PlayerState.DRIVING) {

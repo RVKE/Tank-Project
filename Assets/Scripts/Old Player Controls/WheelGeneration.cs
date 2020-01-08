@@ -76,6 +76,8 @@ public class WheelGeneration : MonoBehaviour {
                 }
                 wheelObject.transform.parent = GameObject.Find("Wheels").transform;
                 wheelObject.name = ("Upperwheel " + upperWheelPos);
+                Rigidbody rigidBody = wheelObject.GetComponent<Rigidbody>();
+                Destroy(rigidBody);
             }
         }
     }

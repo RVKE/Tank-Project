@@ -233,7 +233,7 @@ MonoBehaviour:
   maxSpeed: 40
   acceleration: 20
   deceleration: 100
-  maxRotationSpeed: 250
+  maxRotationSpeed: 400
   turretDamping: 3
 --- !u!114 &100275421
 MonoBehaviour:
@@ -281,7 +281,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &209955904
 GameObject:
@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 209955905}
   - component: {fileID: 209955907}
   - component: {fileID: 209955906}
+  - component: {fileID: 209955908}
   m_Layer: 0
   m_Name: Turret Model
   m_TagString: Untagged
@@ -387,6 +388,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 209955904}
   m_Mesh: {fileID: 4300000, guid: 36c074ef0d4bbea449d3be1ff10da852, type: 3}
+--- !u!65 &209955908
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 209955904}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.452501, y: 0.14578828, z: 0.7276325}
+  m_Center: {x: 0, y: 0.16787262, z: -0.13767523}
 --- !u!1 &527072315
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +498,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &567600633
 Transform:
   m_ObjectHideFlags: 0
@@ -559,6 +572,7 @@ GameObject:
   - component: {fileID: 697265117}
   - component: {fileID: 697265119}
   - component: {fileID: 697265118}
+  - component: {fileID: 697265120}
   m_Layer: 0
   m_Name: Chassis
   m_TagString: Untagged
@@ -644,6 +658,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 697265116}
   m_Mesh: {fileID: 4300000, guid: 0132dfd58da2d8a4daa8cfe72efc825f, type: 3}
+--- !u!65 &697265120
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697265116}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.801, y: 0.12377152, z: 1.322271}
+  m_Center: {x: 0, y: 0.03283523, z: -0.01127851}
 --- !u!1 &802476310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1930464157
 AudioListener:
   m_ObjectHideFlags: 0
