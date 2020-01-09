@@ -101,7 +101,6 @@ public class MapGeneration : MonoBehaviour {
             {
                 Tile tile = null;
 
-
                 Vector3 newTilePos = new Vector3(x, 0, z) + tileSet.transform.position;
 
                 float perlinSample = Mathf.PerlinNoise(

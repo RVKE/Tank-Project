@@ -3,24 +3,16 @@ using UnityEngine.SceneManagement;
 
 public enum PlayerState
 {
-    COMMANDING,
-    DRIVING,
+    Commanding,
+    Driving,
 }
 
 public class GameManager : MonoBehaviour {
 
 
     public PlayerState currentState;
-    public static GameManager instance;
 
-    [Header("Resources")]
-    public int hitPointsAmount;
-    public int energyAmount;
-    public int dieselAmount;
-    public int coalAmount;
-    public int scrapMetalAmount;
-    public int woodAmount;
-    public int projectileAmount;
+    public static GameManager instance;
 
     void Awake ()
     {
@@ -32,7 +24,7 @@ public class GameManager : MonoBehaviour {
         }
         DontDestroyOnLoad(gameObject);
 
-        currentState = PlayerState.DRIVING;
+        currentState = PlayerState.Driving;
     }
 
     void Update()
@@ -45,17 +37,17 @@ public class GameManager : MonoBehaviour {
 
     void UpdatePlayerState()
     {
-        if (currentState == PlayerState.COMMANDING)
-            currentState = PlayerState.DRIVING;
+        if (currentState == PlayerState.Commanding)
+            currentState = PlayerState.Driving;
         else
-            currentState = PlayerState.COMMANDING;
+            currentState = PlayerState.Commanding;
 
         switch (currentState)
         {
-            case PlayerState.COMMANDING:
+            case PlayerState.Commanding:
                 Debug.Log(currentState);
                 break;
-            case PlayerState.DRIVING:
+            case PlayerState.Driving:
                 Debug.Log(currentState);
                 break;
         }
