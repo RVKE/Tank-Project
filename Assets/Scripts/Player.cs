@@ -4,9 +4,6 @@ public class Player : MonoBehaviour {
 
     private PlayerState currentState;
 
-    public float speed;
-    public float rotateSpeed;
-
 	void Update () {
         currentState = GameManager.instance.currentState;
 
@@ -17,11 +14,18 @@ public class Player : MonoBehaviour {
 
     void PlayerMovement()
     {
-        var transAmount = speed * Time.deltaTime * Input.GetAxis("Vertical");
-        var rotateAmount = rotateSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
-
-        transform.Translate(0, 0, transAmount);
-        transform.Rotate(0, rotateAmount, 0);
-
+        if (Input.GetKeyDown("w"))
+        {
+            GetComponent<SpeedManager>().PowerToLeftTrack();
+            GetComponent<SpeedManager>().PowerToRightTrack();
+        }
+        else if (Input.GetKeyDown("d"))
+        {
+            GetComponent<SpeedManager>().PowerToRightTrack();
+        }
+        else if (Input.GetKeyDown("a"))
+        {
+            GetComponent<SpeedManager>().PowerToLeftTrack();
+        }
     }
 }
