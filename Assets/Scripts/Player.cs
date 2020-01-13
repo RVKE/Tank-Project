@@ -14,24 +14,7 @@ public class Player : MonoBehaviour {
 
     void PlayerMovement()
     {
-        if (!Input.GetKey("w"))
-        {
-            if (Input.GetKey("d"))
-            {
-                GetComponent<SpeedManager>().PowerToRightTrack(true);
-            }
-            else if (Input.GetKey("a"))
-            {
-                GetComponent<SpeedManager>().PowerToLeftTrack(true);
-            } else
-            {
-                GetComponent<SpeedManager>().PowerToRightTrack(false);
-                GetComponent<SpeedManager>().PowerToLeftTrack(false);
-            }
-        } else
-        {
-            GetComponent<SpeedManager>().PowerToRightTrack(true);
-            GetComponent<SpeedManager>().PowerToLeftTrack(true);
-        }
+        GetComponent<SpeedManager>().Move(Input.GetAxis("Vertical"));
+        GetComponent<SpeedManager>().Rotate(Input.GetAxis("Horizontal"));
     }
 }

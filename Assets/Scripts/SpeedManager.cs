@@ -3,37 +3,25 @@
 public class SpeedManager : MonoBehaviour {
 
     public float maxSpeed;
+    public float maxRotateSpeed;
+
     public float acceleration;
 
-    public float leftTrackCurrentSpeed;
-    public float rightTrackCurrentSpeed;
+    public float currentSpeed;
+    public float currentRotateSpeed;
 
     void Update() {
-
+        transform.Rotate(new Vector3(0, currentRotateSpeed * Time.deltaTime, 0));
+        transform.Translate(Vector3.forward * currentSpeed / maxSpeed * (maxSpeed / 5.0f) * Time.deltaTime);
     }
 
-    public void PowerToRightTrack(bool power)
+    public void Move(float forward)
     {
-        Debug.Log("RECHTS: " + power);
-        if(power)
-        {
-            rightTrackCurrentSpeed = Mathf.Round(Mathf.Lerp(rightTrackCurrentSpeed, maxSpeed, acceleration) * 100.0f) / 100.0f;
-        } else
-        {
-            rightTrackCurrentSpeed = Mathf.Round(Mathf.Lerp(rightTrackCurrentSpeed, 0, acceleration) * 100.0f) / 100.0f;
-        }
+        currentSpeed = Mathf.Round(Mathf.Lerp(currentSpeed, maxSpeed * forward, acceleration) * 100.0f) / 100.0f;
     }
 
-    public void PowerToLeftTrack(bool power)
+    public void Rotate(float forward)
     {
-        Debug.Log("RECHTS: " + power);
-        if (power)
-        {
-            leftTrackCurrentSpeed = Mathf.Round(Mathf.Lerp(leftTrackCurrentSpeed, maxSpeed, acceleration) * 100.0f) / 100.0f;
-        }
-        else
-        {
-            leftTrackCurrentSpeed = Mathf.Round(Mathf.Lerp(leftTrackCurrentSpeed, 0, acceleration) * 100.0f) / 100.0f;
-        }
+        currentRotateSpeed = maxRotateSpeed * forward;
     }
 }
