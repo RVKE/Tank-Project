@@ -14,18 +14,24 @@ public class Player : MonoBehaviour {
 
     void PlayerMovement()
     {
-        if (Input.GetKeyDown("w"))
+        if (!Input.GetKey("w"))
         {
-            GetComponent<SpeedManager>().PowerToLeftTrack();
-            GetComponent<SpeedManager>().PowerToRightTrack();
-        }
-        else if (Input.GetKeyDown("d"))
+            if (Input.GetKey("d"))
+            {
+                GetComponent<SpeedManager>().PowerToRightTrack(true);
+            }
+            else if (Input.GetKey("a"))
+            {
+                GetComponent<SpeedManager>().PowerToLeftTrack(true);
+            } else
+            {
+                GetComponent<SpeedManager>().PowerToRightTrack(false);
+                GetComponent<SpeedManager>().PowerToLeftTrack(false);
+            }
+        } else
         {
-            GetComponent<SpeedManager>().PowerToRightTrack();
-        }
-        else if (Input.GetKeyDown("a"))
-        {
-            GetComponent<SpeedManager>().PowerToLeftTrack();
+            GetComponent<SpeedManager>().PowerToRightTrack(true);
+            GetComponent<SpeedManager>().PowerToLeftTrack(true);
         }
     }
 }
