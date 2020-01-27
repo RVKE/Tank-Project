@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 42c592f5a983e07459e9cfa1deb3da47
+timeCreated: 1579509529
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - trackObject: {fileID: 1352730753811634, guid: 5d95b09534a47a1409913122507fc4cd,
+      type: 2}
+  - wheelPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
