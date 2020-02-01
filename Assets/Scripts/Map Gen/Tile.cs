@@ -12,6 +12,8 @@ public enum Type
 
 public class Tile {
 
+    #region Variables
+
     [HideInInspector]
     public int tileX;
     [HideInInspector]
@@ -19,7 +21,9 @@ public class Tile {
     [HideInInspector]
     public Type type;
 
-	public Tile (int x, int z, Type t) {
+    #endregion
+
+    public Tile (int x, int z, Type t) {
         tileX = x;
         tileZ = z;
         type = t;

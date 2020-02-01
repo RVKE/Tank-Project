@@ -15,9 +15,9 @@ public class WheelGeneration : MonoBehaviour {
     public float wheelLowerSpacingZ;
     [Range(0.1f, 1.0f)]
     public float wheelUpperSpacingZ;
-    [Range(0f, -0.2f)]
+    [Range(-0.2f, 0.2f)]
     public float wheelUpperPosY;
-    [Range(0f, -0.2f)]
+    [Range(-0.2f, -0.0f)]
     public float wheelLowerPosY;
     [Range(0.1f, 1.6f)]
     public float wheelOffsetX;
@@ -36,31 +36,37 @@ public class WheelGeneration : MonoBehaviour {
             if (child.name == "Track")
             {
                 GenerateLowerWheels(child);
-                GenerateUpperWheels();
+                GenerateUpperWheels(child);
+                child.gameObject.AddComponent<TankTrack>();
             }
         }
 
     }
 
-    void GenerateUpperWheels()
+    void GenerateUpperWheels(Transform parent)
     {
-
-    }
-
-    void GenerateLowerWheels(Transform parent)
-    {
-        for(float i = -(wheelAmount / 4); i <= wheelAmount / 4; i += wheelLowerSpacingZ)
+        float upperWheelRangeZ = ((wheelAmount - 4) / 4 * wheelLowerSpacingZ) + wheelUpperSpacingZ;
+        for (float z = -upperWheelRangeZ; z <= upperWheelRangeZ; z += upperWheelRangeZ * 2)
         {
-            GameObject wheelObject = Instantiate(wheelPrefab, new Vector3(parent.gameObject.transform.position.x,  parent.gameObject.transform.position.y + wheelLowerPosY, i), transform.rotation);
+            GameObject wheelObject = Instantiate(wheelPrefab, new Vector3(parent.gameObject.transform.position.x, wheelUpperPosY + transform.position.y, z), transform.rotation);
             wheelObject.transform.parent = parent;
-            wheelObject.name = "Lower Wheel (" + i + ")";
-            wheelObject.AddComponent<TankWheel>();
+            wheelObject.name = "Upper Wheel (" + z + ")";
             if (wheelObject.transform.position.x > 0)
                 wheelObject.transform.Rotate(0, 180, 0);
         }
     }
 
-    void Update () {
-		
-	}
+    void GenerateLowerWheels(Transform parent)
+    {
+        float lowerWheelRangeZ = (wheelAmount - 4) / 4 * wheelLowerSpacingZ;
+        for (float z = -lowerWheelRangeZ; z <= lowerWheelRangeZ; z += wheelLowerSpacingZ)
+        {
+            GameObject wheelObject = Instantiate(wheelPrefab, new Vector3(parent.gameObject.transform.position.x, parent.gameObject.transform.position.y + wheelLowerPosY, z), transform.rotation);
+            wheelObject.transform.parent = parent;
+            wheelObject.name = "Lower Wheel (" + z + ")";
+            wheelObject.AddComponent<TankWheel>();
+            if (wheelObject.transform.position.x > 0)
+                wheelObject.transform.Rotate(0, 180, 0);
+        }
+    }
 }

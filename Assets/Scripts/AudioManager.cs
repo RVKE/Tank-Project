@@ -4,11 +4,13 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour {
 
+    #region Variables
+
     public Sound[] sounds;
 
     public static AudioManager instance;
 
-    //FindObjectOfType<AudioManager>().Play("Test");
+    #endregion
 
     void Awake()
     {

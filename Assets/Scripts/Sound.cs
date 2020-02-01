@@ -4,6 +4,8 @@
 
 public class Sound {
 
+    #region Variables
+
     public AudioClip clip;
 
     public string name;
@@ -24,5 +26,7 @@ public class Sound {
     public AudioSource source;
     [HideInInspector]
     public AudioLowPassFilter lpFilter;
+
+    #endregion
 
 }

@@ -14,7 +14,8 @@ public class TankWheel : MonoBehaviour {
 
     void Start()
     {
-        wheelDiameter = GetComponent<MeshFilter>().transform.localScale.y;
+        //wheelDiameter = GetComponent<MeshFilter>().transform.localScale.y;
+        wheelDiameter = 0.5f;
     }
 
     void Update()

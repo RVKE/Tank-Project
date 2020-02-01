@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class MapGeneration : MonoBehaviour {
 
-    public GameObject viewPoint;
+    #region Variables
+
+    [Header("References")]
     public GameObject mapParent;
     public GameObject tileSetParent;
-
-    private Vector3 playerPos;
+    public Transform playerTransform;
 
     [Header("Tile Objects")]
     public GameObject[] snowTile;
@@ -22,6 +23,7 @@ public class MapGeneration : MonoBehaviour {
     public int tileSetSize;
     [Range(1f, 4f)]
     public int renderDist;
+
     //Perlin Noise
     public bool perlinAlwaysRandomPos; //Default: True
     [Range(0.1f, 1.0f)]
@@ -34,6 +36,8 @@ public class MapGeneration : MonoBehaviour {
     public float perlinNoiseExtra; //Default: 0.15
     public float perlinOffsetX; //Default: 20000
     public float perlinOffsetZ; //Default: 40000
+
+    #endregion
 
     void Start()
     {
@@ -50,15 +54,13 @@ public class MapGeneration : MonoBehaviour {
     
     void LoadTileSets()
     {
-        playerPos = viewPoint.transform.position;
-
         //check if new tileSet needs to be placed
 
         for (int x = (-renderDist * tileSetSize) + tileSetSize; x < renderDist * tileSetSize; x += tileSetSize)
         {
             for (int z = (-renderDist * tileSetSize) + tileSetSize; z < renderDist * tileSetSize; z += tileSetSize)
             {
-                Vector3 newTileSetPos = RoundVector(new Vector3(x, 0, z) + playerPos, tileSetSize);
+                Vector3 newTileSetPos = RoundVector(new Vector3(x, 0, z) + playerTransform.position, tileSetSize);
                 if (!tileSets.ContainsValue(newTileSetPos))
                 {
                     CreateTileSet((int)newTileSetPos.x, (int)newTileSetPos.z);

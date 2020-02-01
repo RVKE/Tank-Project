@@ -19,22 +19,20 @@ public class TankTrack : MonoBehaviour {
             }
         }
 
-        wheels = wheels.OrderBy(w => w.transform.position.x).ToList();
+        wheels = wheels.OrderBy(w => w.transform.position.z).ToList();
+
+        Debug.Log(wheels);
 
         GetComponent<LineRenderer>().positionCount = wheels.Count;
 
     }
 	
 	void Update () {
-        GenerateLowerWheelTracks();
-    }
-
-    void GenerateLowerWheelTracks()
-    {
         foreach (GameObject wheel in wheels)
         {
-            Vector3 connectionPoint = new Vector3(wheel.transform.position.x, wheel.transform.position.y - (wheel.transform.localScale.z / 2) + 0.01f, wheel.transform.position.z);
+            Vector3 connectionPoint = new Vector3(wheel.transform.position.x, wheel.transform.position.y - (0.5f / 2) + 0.04f, wheel.transform.position.z);
             GetComponent<LineRenderer>().SetPosition(wheels.IndexOf(wheel), connectionPoint);
+            Debug.DrawLine(connectionPoint, connectionPoint + new Vector3(0.7f, 0, 0));
         }
     }
 }
