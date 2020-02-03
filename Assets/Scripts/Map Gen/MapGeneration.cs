@@ -19,12 +19,14 @@ public class MapGeneration : MonoBehaviour {
 
     //Map Settings
     [Header("Map Generation Settings")]
-    [Range(32f, 256f)]
+    [Range(1, 5)]
+    public int tileSize;
+    [Range(32, 256)]
     public int tileSetSize;
-    [Range(1f, 4f)]
+    [Range(1, 4)]
     public int renderDist;
 
-    //Perlin Noise
+    //Perlin Noise Properties
     public bool perlinAlwaysRandomPos; //Default: True
     [Range(0.1f, 1.0f)]
     public float perlinLimitMin; //Default: 0.5
@@ -56,11 +58,11 @@ public class MapGeneration : MonoBehaviour {
     {
         //check if new tileSet needs to be placed
 
-        for (int x = (-renderDist * tileSetSize) + tileSetSize; x < renderDist * tileSetSize; x += tileSetSize)
+        for (int x = (-renderDist * tileSetSize * tileSize) + tileSetSize * tileSize; x < renderDist * tileSetSize * tileSize; x += tileSetSize * tileSize)
         {
-            for (int z = (-renderDist * tileSetSize) + tileSetSize; z < renderDist * tileSetSize; z += tileSetSize)
+            for (int z = (-renderDist * tileSetSize * tileSize) + tileSetSize * tileSize; z < renderDist * tileSetSize * tileSize; z += tileSetSize * tileSize)
             {
-                Vector3 newTileSetPos = RoundVector(new Vector3(x, 0, z) + playerTransform.position, tileSetSize);
+                Vector3 newTileSetPos = RoundVector(new Vector3(x, 0, z) + playerTransform.position, tileSetSize * tileSize);
                 if (!tileSets.ContainsValue(newTileSetPos))
                 {
                     CreateTileSet((int)newTileSetPos.x, (int)newTileSetPos.z);
@@ -92,14 +94,14 @@ public class MapGeneration : MonoBehaviour {
     {
         //fill tileSet with individual tiles
 
-        int min = -tileSetSize / 2;
-        int max = tileSetSize / 2;
+        int min = -tileSetSize * tileSize / 2;
+        int max = tileSetSize * tileSize / 2;
 
         float perlinDensity = tileSetSize / perlinDensityMultiplier;
 
-        for (int x = min; x < max; x++)
+        for (int x = min; x < max; x += tileSize)
         {
-            for (int z = min; z < max; z++)
+            for (int z = min; z < max; z += tileSize)
             {
                 Tile tile = null;
 
@@ -148,6 +150,8 @@ public class MapGeneration : MonoBehaviour {
         GameObject tileObject = Instantiate(RandomGameObject(tileArray), tilePos, tileSet.transform.rotation);
         tileObject.transform.parent = tileSet.transform;
         tileObject.name = (tile.type + " (" + tileObject.transform.position.x + ", " + tileObject.transform.position.z + ")");
+        tileObject.tag = "Tile";
+        tileObject.GetComponent<MeshRenderer>().enabled = false;
     }
 
     public static GameObject RandomGameObject(GameObject[] array)

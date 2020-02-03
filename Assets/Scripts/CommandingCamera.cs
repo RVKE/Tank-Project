@@ -4,12 +4,14 @@ public class CommandingCamera : MonoBehaviour {
 
     #region Variables
 
+    [Header("Input")]
     public PlayerInput input;
 
+    [Header("Camera Properties")]
     public float cameraSmoothingSpeed;
 
     public Transform utilityCameraTransform;
-    public Transform radarCameraTransform;
+    public Transform dataCameraTransform;
 
     private Transform wantedTransform;
 
@@ -27,7 +29,7 @@ public class CommandingCamera : MonoBehaviour {
 
         if (input.dKeyInput)
         {
-            wantedTransform = radarCameraTransform;
+            wantedTransform = dataCameraTransform;
         } else if (input.aKeyInput)
         {
             wantedTransform = utilityCameraTransform;

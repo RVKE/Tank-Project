@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
         currentPlayerState = PlayerState.DRIVING;
     }
 	
-	void FixedUpdate () {
+	void Update () {
 		if (rigidBody && input && currentPlayerState == PlayerState.DRIVING)
         {
             HandleMovement();
@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour {
         {
             outsideGroup.SetActive(!outsideGroup.activeInHierarchy);
             insideGroup.SetActive(!outsideGroup.activeInHierarchy);
+            commandCamera.transform.rotation = Quaternion.Euler(90, 90, 0);
             currentPlayerState = PlayerState.COMMANDING;
         }
     }

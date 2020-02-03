@@ -32,7 +32,7 @@ public class PlayerInput : MonoBehaviour {
 
         Ray screenRay = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if(Physics.Raycast(screenRay, out hit))
+        if(Physics.Raycast(screenRay, out hit) && Vector3.Distance(hit.point, transform.position) > 3.0f)
         {
             reticlePosition = hit.point;
         }
