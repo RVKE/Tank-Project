@@ -83,62 +83,8 @@ public class UtilityMenu : MonoBehaviour
         }
     }
 
-    public void UpgradeArmor()
+    public void Upgrade()
     {
-        var gameManager = GameManager.instance;
-        if (gameManager.boltAmount - 10 >= 0 && gameManager.structureAmount - 6 >= 0)
-        {
-            gameManager.armorLevel += 1;
-            gameManager.boltAmount -= 10;
-            gameManager.structureAmount -= 6;
-        }
-    }
-
-    public void UpgradeMobility()
-    {
-        var gameManager = GameManager.instance;
-        if (gameManager.boltAmount - 6 >= 0 && gameManager.structureAmount - 2 >= 0
-            && gameManager.mechanismAmount - 4 >= 0)
-        {
-            gameManager.mobilityLevel += 1;
-            gameManager.boltAmount -= 6;
-            gameManager.structureAmount -= 2;
-            gameManager.mechanismAmount -= 4;
-        }
-    }
-
-    public void UpgradeFirePower()
-    {
-        var gameManager = GameManager.instance;
-        if (gameManager.boltAmount - 26 >= 0 && gameManager.structureAmount - 1 >= 0
-            && gameManager.mechanismAmount - 1 >= 0)
-        {
-            gameManager.firePowerLevel += 1;
-            gameManager.boltAmount -= 26;
-            gameManager.structureAmount -= 1;
-            gameManager.mechanismAmount -= 1;
-        }
-    }
-
-    public void UpgradeRadar()
-    {
-        var gameManager = GameManager.instance;
-        if (gameManager.boltAmount - 8 >= 0 && gameManager.systemAmount - 2 >= 0)
-        {
-            gameManager.radarLevel += 1;
-            gameManager.boltAmount -= 8;
-            gameManager.systemAmount -= 2;
-        }
-    }
-
-    public void UpgradeHeater()
-    {
-        var gameManager = GameManager.instance;
-        if (gameManager.boltAmount - 8 >= 0 && gameManager.mechanismAmount - 6 >= 0)
-        {
-            gameManager.heaterLevel += 1;
-            gameManager.boltAmount -= 8;
-            gameManager.mechanismAmount -= 6;
-        }
+        
     }
 }

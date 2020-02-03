@@ -1,6 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+public enum AcquirableItem
+{
+    BOLT,
+    STRUCTURE,
+    MECHANISM,
+    SYSTEM,
+    ARMOR,
+    MOBILITY,
+    FIREPOWER,
+    RADAR,
+    HEATER,
+    INTEGRITY,
+    REFUEL,
+    ENERGY,
+    FULLENERGY
+}
+
 public class GameManager : MonoBehaviour {
 
     #region Variables
@@ -68,6 +85,11 @@ public class GameManager : MonoBehaviour {
     void Update()
     {
         UpdateText();
+    }
+
+    void BuyItem()
+    {
+
     }
 
     void UpdateText()
