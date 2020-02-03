@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acquirableItem: 10
   description: 20% FUEL RESTORED
+  itemQuantity: 20
   scrapMetalCost: 0
   coalCost: 0
   woodCost: 0

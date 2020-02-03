@@ -43,4 +43,9 @@ public class PurchaseCardDisplay : MonoBehaviour
         if (systemCostText)
             systemCostText.text = purchaseCard.systemCost.ToString() + " SYSTEMS";
     }
+
+    public void BuyItem()
+    {
+        GameManager.instance.MakePurchase(purchaseCard);
+    }
 }

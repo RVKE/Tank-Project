@@ -42,49 +42,4 @@ public class UtilityMenu : MonoBehaviour
 
         utilityMenuObject.SetActive(true);
     }
-
-    public void CraftBolt()
-    {
-        var gameManager = GameManager.instance;
-        if (gameManager.scrapMetalAmount - 4 >= 0)
-        {
-            gameManager.boltAmount += 1;
-            gameManager.scrapMetalAmount -= 4;
-        }
-    }
-
-    public void CraftStructure()
-    {
-        var gameManager = GameManager.instance;
-        if (gameManager.scrapMetalAmount - 12 >= 0)
-        {
-            gameManager.structureAmount += 1;
-            gameManager.scrapMetalAmount -= 12;
-        }
-    }
-
-    public void CraftMechanism()
-    {
-        var gameManager = GameManager.instance;
-        if (gameManager.scrapMetalAmount - 36 >= 0)
-        {
-            gameManager.mechanismAmount += 1;
-            gameManager.scrapMetalAmount -= 36;
-        }
-    }
-
-    public void CraftSystem()
-    {
-        var gameManager = GameManager.instance;
-        if (gameManager.scrapMetalAmount - 108 >= 0)
-        {
-            gameManager.systemAmount += 1;
-            gameManager.scrapMetalAmount -= 108;
-        }
-    }
-
-    public void Upgrade()
-    {
-        
-    }
 }

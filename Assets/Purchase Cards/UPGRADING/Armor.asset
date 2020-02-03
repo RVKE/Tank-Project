@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acquirableItem: 4
   description: UPGRADE
+  itemQuantity: 1
   scrapMetalCost: 0
   coalCost: 0
   woodCost: 0

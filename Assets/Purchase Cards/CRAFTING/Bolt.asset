@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acquirableItem: 0
   description: 
+  itemQuantity: 1
   scrapMetalCost: 4
   coalCost: 0
   woodCost: 0

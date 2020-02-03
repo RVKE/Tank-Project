@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acquirableItem: 11
   description: RESTORE 25%
+  itemQuantity: 25
   scrapMetalCost: 0
   coalCost: 0
   woodCost: 20

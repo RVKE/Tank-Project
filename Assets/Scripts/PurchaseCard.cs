@@ -5,9 +5,13 @@ public class PurchaseCard : ScriptableObject
 {
     #region Variables
 
+    [Header("Item Properties")]
+
     public AcquirableItem acquirableItem;
 
     public string description;
+
+    public int itemQuantity;
 
     [Header("Item Costs")]
 
