@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Reticle")]
     public Transform reticleTransform;
+    public float reticleSmoothingSpeed;
     public float turretSmoothingSpeed;
 
 
@@ -84,7 +85,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (reticleTransform)
         {
-            reticleTransform.position = input.reticlePosition;
+            reticleTransform.position = Vector3.Lerp(reticleTransform.position, input.reticlePosition, reticleSmoothingSpeed);
         }
     }
 
@@ -92,6 +93,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (currentPlayerState == PlayerState.COMMANDING)
         {
+            mainCamera.gameObject.SetActive(true);
             outsideGroup.SetActive(!outsideGroup.activeInHierarchy);
             insideGroup.SetActive(!outsideGroup.activeInHierarchy);
             mainCamera.transform.position = turretTransform.position;
@@ -99,6 +101,7 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
+            mainCamera.gameObject.SetActive(false);
             outsideGroup.SetActive(!outsideGroup.activeInHierarchy);
             insideGroup.SetActive(!outsideGroup.activeInHierarchy);
             commandCamera.transform.rotation = Quaternion.Euler(90, 90, 0);

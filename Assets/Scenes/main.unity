@@ -1507,7 +1507,7 @@ Transform:
   - {fileID: 230370659}
   - {fileID: 944193627}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &100275420
 Rigidbody:
@@ -1546,6 +1546,7 @@ MonoBehaviour:
   tankRotationSpeed: 70
   turretTransform: {fileID: 2124512943}
   reticleTransform: {fileID: 1642493665}
+  reticleSmoothingSpeed: 0.3
   turretSmoothingSpeed: 5
 --- !u!114 &100275422
 MonoBehaviour:
@@ -1762,7 +1763,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &124100998
 GameObject:
@@ -3010,7 +3011,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &230370659
 Transform:
   m_ObjectHideFlags: 0
@@ -7261,7 +7262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &812801596
 Transform:
   m_ObjectHideFlags: 0
@@ -7275,8 +7276,6 @@ Transform:
   m_Children:
   - {fileID: 2106812471}
   - {fileID: 19062612}
-  - {fileID: 1930464160}
-  - {fileID: 1642493665}
   m_Father: {fileID: 100275419}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15281,11 +15280,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642493662}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
-  m_Father: {fileID: 812801596}
-  m_RootOrder: 3
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1643354887
 GameObject:
@@ -17043,7 +17042,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1865951233
 GameObject:
@@ -17309,7 +17308,7 @@ MonoBehaviour:
   snowTile:
   - {fileID: 6419237702355044485, guid: fb1c1c1e509c9b448a912cf82e02e252, type: 3}
   treeTile:
-  - {fileID: 1183236846966090, guid: 7af754d01e5c7474db8f05219cce3c20, type: 3}
+  - {fileID: 3823589622834237519, guid: 452dfb0157b6d524c85eb1d6f8914c65, type: 3}
   rockTile:
   - {fileID: 1839553682705872, guid: 7fcbefad967be3049982ccaf0cdeb596, type: 3}
   tileSize: 3
@@ -17371,7 +17370,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1918991014
 GameObject:
@@ -17663,11 +17662,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930464156}
   m_LocalRotation: {x: -0.4599459, y: 0.15694444, z: -0.08296959, w: -0.87001973}
-  m_LocalPosition: {x: 3.2619305, y: 13.59377, z: -7.9760985}
+  m_LocalPosition: {x: 3.2619305, y: 14.59377, z: -7.9760985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 812801596}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 70, y: -15, z: 0}
 --- !u!114 &1930464161
 MonoBehaviour:
