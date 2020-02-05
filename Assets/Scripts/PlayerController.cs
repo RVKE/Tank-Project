@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (turretTransform)
         {
-            Vector3 turretDirection = input.reticlePosition - turretTransform.position;
+            Vector3 turretDirection = input.mouseWorldPosition - turretTransform.position;
             turretDirection.y = 0f;
 
             finalTurretDirection = Vector3.Lerp(finalTurretDirection, turretDirection, turretSmoothingSpeed * Time.deltaTime);
@@ -85,7 +85,8 @@ public class PlayerController : MonoBehaviour {
     {
         if (reticleTransform)
         {
-            reticleTransform.position = Vector3.Lerp(reticleTransform.position, input.reticlePosition, reticleSmoothingSpeed);
+            Vector3 reticlePosition = new Vector3(input.mouseWorldPosition.x, 0.5f, input.mouseWorldPosition.z);
+            reticleTransform.position = Vector3.Lerp(reticleTransform.position, reticlePosition, reticleSmoothingSpeed);
         }
     }
 
@@ -97,6 +98,7 @@ public class PlayerController : MonoBehaviour {
             outsideGroup.SetActive(!outsideGroup.activeInHierarchy);
             insideGroup.SetActive(!outsideGroup.activeInHierarchy);
             mainCamera.transform.position = turretTransform.position;
+            RenderSettings.ambientLight = Color.white;
             currentPlayerState = PlayerState.DRIVING;
         }
         else
@@ -104,7 +106,8 @@ public class PlayerController : MonoBehaviour {
             mainCamera.gameObject.SetActive(false);
             outsideGroup.SetActive(!outsideGroup.activeInHierarchy);
             insideGroup.SetActive(!outsideGroup.activeInHierarchy);
-            commandCamera.transform.rotation = Quaternion.Euler(90, 90, 0);
+            commandCamera.transform.rotation = commandCamera.transform.rotation * Quaternion.Euler(80, 0, 0);
+            RenderSettings.ambientLight = Color.black;
             currentPlayerState = PlayerState.COMMANDING;
         }
     }

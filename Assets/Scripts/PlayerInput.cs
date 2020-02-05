@@ -7,7 +7,7 @@ public class PlayerInput : MonoBehaviour {
     [Header("Input")]
     public Camera cam;
 
-    public Vector3 reticlePosition;
+    public Vector3 mouseWorldPosition;
 
     public float forwardInput;
     public float rotationInput;
@@ -32,9 +32,9 @@ public class PlayerInput : MonoBehaviour {
 
         Ray screenRay = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if(Physics.Raycast(screenRay, out hit) && Vector3.Distance(hit.point, transform.position) > 3.0f)
+        if(Physics.Raycast(screenRay, out hit))
         {
-            reticlePosition = hit.point;
+            mouseWorldPosition = hit.point;
         }
     }
 }

@@ -14,7 +14,6 @@ public class RenderTiles : MonoBehaviour
         if (col.gameObject.tag == "Tile")
         {
             col.gameObject.GetComponent<MeshRenderer>().enabled = true;
-            //Debug.DrawLine(col.gameObject.transform.position, transform.position, Color.red);
         }
     }
 
