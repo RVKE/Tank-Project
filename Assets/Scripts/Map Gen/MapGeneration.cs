@@ -27,17 +27,19 @@ public class MapGeneration : MonoBehaviour {
     public int renderDist;
 
     //Perlin Noise Properties
-    public bool perlinAlwaysRandomPos; //Default: True
+    public bool perlinAlwaysRandomPos; //DEFAULT: True
     [Range(0.1f, 1.0f)]
-    public float perlinLimitMin; //Default: 0.5
+    public float perlinSnowTransition; //DEFAULT: 0.1f
     [Range(0.1f, 1.0f)]
-    public float perlinLimitMax; //Default: 0.6
+    public float perlinTreeTransition; //DEFAULT: 0.5f
+    [Range(0.0f, 0.3f)]
+    public float perlinMaxTransitionOffset; //DEFAULT: 0.1f;
     [Range(1.0f, 10.0f)]
-    public float perlinDensityMultiplier; //Default: 5
+    public float perlinDensityMultiplier; //DEFAULT: 5
     [Range(0.0f, 1.0f)]
-    public float perlinNoiseExtra; //Default: 0.15
-    public float perlinOffsetX; //Default: 20000
-    public float perlinOffsetZ; //Default: 40000
+    public float perlinNoiseExtra; //DEFAULT: 0.15f
+    public float perlinOffsetX; //DEFAULT: 20000
+    public float perlinOffsetZ; //DEFAULT: 40000
 
     #endregion
 
@@ -111,8 +113,15 @@ public class MapGeneration : MonoBehaviour {
                     (newTilePos.x/perlinDensity) + perlinOffsetX + Random.Range(-perlinNoiseExtra, perlinNoiseExtra), 
                     (newTilePos.z/perlinDensity) + perlinOffsetZ + Random.Range(-perlinNoiseExtra, perlinNoiseExtra));
 
-                if (perlinSample < Random.Range(perlinLimitMin, perlinLimitMax))
+                float perlinSnowOffset = Random.Range(perlinSnowTransition - perlinMaxTransitionOffset / 2, 
+                    perlinSnowTransition + perlinMaxTransitionOffset / 2);
+                float perlinTreeOffset = Random.Range(perlinTreeTransition - perlinMaxTransitionOffset / 2,
+                    perlinTreeTransition + perlinMaxTransitionOffset / 2);
+
+                if (perlinSample < perlinSnowOffset)
                 {
+                    tile = new Tile((int)newTilePos.x, (int)newTilePos.z, (Type)2);
+                } else if(perlinSample > perlinSnowTransition && perlinSample < perlinTreeTransition) {
                     tile = new Tile((int)newTilePos.x, (int)newTilePos.z, 0);
                 } else
                 {

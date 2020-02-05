@@ -17513,7 +17513,7 @@ MonoBehaviour:
     type: 3}
   playerTransform: {fileID: 100275419}
   snowTile:
-  - {fileID: 4918645339257706538, guid: a5d44aa41aec819439e8279fe0f16c2f, type: 3}
+  - {fileID: 113745270372047929, guid: db96a9ca927cfb743b0f8a7855e0228a, type: 3}
   treeTile:
   - {fileID: 5000152922894251093, guid: 919ae3b18e441f64695518edde69f14c, type: 3}
   - {fileID: 6126589239010318182, guid: ec45b90c820afdd4cb226744a24fb110, type: 3}
@@ -17531,8 +17531,9 @@ MonoBehaviour:
   tileSetSize: 64
   renderDist: 2
   perlinAlwaysRandomPos: 1
-  perlinLimitMin: 0.5
-  perlinLimitMax: 0.6
+  perlinSnowTransition: 0.1
+  perlinTreeTransition: 0.6
+  perlinMaxTransitionOffset: 0.1
   perlinDensityMultiplier: 4
   perlinNoiseExtra: 0.15
   perlinOffsetX: 20000
