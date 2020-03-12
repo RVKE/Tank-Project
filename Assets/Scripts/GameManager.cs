@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public enum AcquirableItem
 {
+    SCRAPMETAL,
+    WOOD,
+    COAL,
+    UNREFINEDOIL,
     BOLT,
     STRUCTURE,
     MECHANISM,
@@ -22,18 +25,11 @@ public class GameManager : MonoBehaviour {
 
     #region Variables
 
+    public bool isLooting;
+
     [Header("References")]
+
     public Transform playerTransform;
-
-    public Text scrapMetalAmountText;
-    public Text woodAmountText;
-    public Text coalAmountText;
-    public Text unrefinedOilAmountText;
-
-    public Text boltAmountText;
-    public Text structureAmountText;
-    public Text mechanismAmountText;
-    public Text systemAmountText;
 
     public static GameManager instance;
 
@@ -79,11 +75,6 @@ public class GameManager : MonoBehaviour {
     {
         integrityAmount = energyAmount = fuelAmount = 100;
         armorLevel = mobilityLevel = firePowerLevel = radarLevel = heaterLevel = 1;
-    }
-
-    void Update()
-    {
-        UpdateText();
     }
 
     public void MakePurchase(PurchaseCard purchaseCard)
@@ -138,17 +129,5 @@ public class GameManager : MonoBehaviour {
         {
             //Not enough resources
         }
-    }
-
-    void UpdateText()
-    {
-        scrapMetalAmountText.text = "SCRAPMETAL: " + scrapMetalAmount;
-        woodAmountText.text = "WOOD: " + woodAmount;
-        coalAmountText.text = "COAL: " + coalAmount;
-        unrefinedOilAmountText.text = "UNREFINED OIL: " + unrefinedOilAmount;
-        boltAmountText.text = "BOLTS: " + boltAmount;
-        structureAmountText.text = "STRUCTURES: " + structureAmount;
-        mechanismAmountText.text = "MECHANISMS: " + mechanismAmount;
-        systemAmountText.text = "SYSTEMS: " + systemAmount;
     }
 }

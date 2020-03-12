@@ -5,7 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - TileSet
-  - Tile
+  - Tile_Snow
+  - Tile_Tree
+  - Tile_Rock
+  - Tile_Mega
+  - Resource
   layers:
   - Default
   - TransparentFX
@@ -15,11 +19,11 @@ TagManager:
   - UI
   - 
   - 
-  - Outside PostProcess
-  - Inside PostProcess
-  - 
-  - 
-  - 
+  - PostProcess (Outside)
+  - PostProcess (Inside)
+  - PostProcess (Menu)
+  - Resource
+  - Player
   - 
   - 
   - 

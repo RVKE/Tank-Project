@@ -4,6 +4,7 @@ public enum PlayerState
 {
     COMMANDING,
     DRIVING,
+    RESTING
 }
 
 [RequireComponent(typeof(Rigidbody))]
@@ -25,14 +26,18 @@ public class PlayerController : MonoBehaviour {
     public float tankSpeed;
     public float tankRotationSpeed;
 
-    [Header("Turret")]
+    [Header("Turret/Cannon")]
     public Transform turretTransform;
+    public Transform emitterTransform;
 
     [Header("Reticle")]
     public Transform reticleTransform;
     public float reticleSmoothingSpeed;
     public float turretSmoothingSpeed;
 
+    public GameObject shell;
+    public float shellSpeed;
+    public GameObject fireParticle;
 
     private Rigidbody rigidBody;
     private PlayerInput input;
@@ -56,6 +61,8 @@ public class PlayerController : MonoBehaviour {
         }
         if (input.tabKeyInput)
             HandlePlayerState();
+        if (input.leftMouseInput)
+            HandleFiring();
     }
 
     protected void HandleMovement()
@@ -90,6 +97,19 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    protected void HandleFiring()
+    {
+        GameObject tempShell = Instantiate(shell, emitterTransform.position, emitterTransform.rotation);
+        tempShell.GetComponent<Rigidbody>().AddForce(turretTransform.forward * shellSpeed);
+        Destroy(tempShell, 10.0f);
+        Instantiate(fireParticle, emitterTransform.position, emitterTransform.rotation);
+        /*RaycastHit hit;
+        if (Physics.Raycast(emitterTransform.position, emitterTransform.forward, out hit, 100)) {
+            Instantiate(shell, emitterTransform.position, emitterTransform.rotation);
+            //shell.GetComponent<Rigidbody>().AddForce(transform.forward * 100);
+        }*/
+    }
+
     protected void HandlePlayerState()
     {
         if (currentPlayerState == PlayerState.COMMANDING)
@@ -101,7 +121,7 @@ public class PlayerController : MonoBehaviour {
             RenderSettings.ambientLight = Color.white;
             currentPlayerState = PlayerState.DRIVING;
         }
-        else
+        else if (currentPlayerState == PlayerState.DRIVING)
         {
             mainCamera.gameObject.SetActive(false);
             outsideGroup.SetActive(!outsideGroup.activeInHierarchy);
@@ -109,6 +129,10 @@ public class PlayerController : MonoBehaviour {
             commandCamera.transform.rotation = commandCamera.transform.rotation * Quaternion.Euler(80, 0, 0);
             RenderSettings.ambientLight = Color.black;
             currentPlayerState = PlayerState.COMMANDING;
+        }
+        else
+        {
+            //enge sjebbies
         }
     }
 }

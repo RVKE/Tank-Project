@@ -5,9 +5,15 @@ public enum Type
     Snow,
     Tree,
     Rock,
-    House,
-    Vehicle,
-    Mast,
+    RadioTower,
+    WoodStorage,
+    CoalMine,
+    Bunker,
+    Turret,
+    Building,
+    Hangar,
+    NumberOfTypes
+
 }
 
 public class Tile {

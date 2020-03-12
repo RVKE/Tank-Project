@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35574dc90460443459e7751b422d2d99, type: 3}
   m_Name: Integrity
   m_EditorClassIdentifier: 
-  acquirableItem: 9
+  acquirableItem: 13
   description: RESTORE 100%
   itemQuantity: 100
   scrapMetalCost: 80

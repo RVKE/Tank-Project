@@ -8,9 +8,11 @@ public class PlayerInput : MonoBehaviour {
     public Camera cam;
 
     public Vector3 mouseWorldPosition;
+    public Collider mouseHitCollider;
 
     public float forwardInput;
     public float rotationInput;
+    public bool leftMouseInput;
     public bool tabKeyInput;
     public bool aKeyInput;
     public bool dKeyInput;
@@ -24,6 +26,7 @@ public class PlayerInput : MonoBehaviour {
 
     protected void HandleInput()
     {
+        leftMouseInput = Input.GetButtonDown("Fire1");
         tabKeyInput = Input.GetKeyDown(KeyCode.Tab);
         aKeyInput = Input.GetKeyDown(KeyCode.A);
         dKeyInput = Input.GetKeyDown(KeyCode.D);
@@ -35,6 +38,7 @@ public class PlayerInput : MonoBehaviour {
         if(Physics.Raycast(screenRay, out hit))
         {
             mouseWorldPosition = hit.point;
+            mouseHitCollider = hit.collider;
         }
     }
 }

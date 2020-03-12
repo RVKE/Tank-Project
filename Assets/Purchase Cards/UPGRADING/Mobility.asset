@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35574dc90460443459e7751b422d2d99, type: 3}
   m_Name: Mobility
   m_EditorClassIdentifier: 
-  acquirableItem: 5
+  acquirableItem: 9
   description: UPGRADE
   itemQuantity: 1
   scrapMetalCost: 0

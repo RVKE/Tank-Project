@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35574dc90460443459e7751b422d2d99, type: 3}
   m_Name: Energy
   m_EditorClassIdentifier: 
-  acquirableItem: 11
+  acquirableItem: 15
   description: RESTORE 25%
   itemQuantity: 25
   scrapMetalCost: 0
